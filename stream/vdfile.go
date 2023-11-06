@@ -67,6 +67,14 @@ func ReadVDFile(path string) (*VDFile, error) {
 			return nil, err
 		}
 
+		if len(param.ResDel) == 0 {
+			param.ResDel = config.Dels.ResDel
+		}
+
+		if len(param.AckDel) == 0 {
+			param.AckDel = config.Dels.AckDel
+		}
+
 		currentCmd := &streamCommand{
 			Param:    param.Name,
 			Req:      []byte(param.Req),
