@@ -89,7 +89,8 @@ func (a *api) setParameter(w http.ResponseWriter, r *http.Request) {
 
 	err := a.d.SetParameter(param, value)
 	if err != nil {
-		http.Error(w, err.Error(), http.StatusInternalServerError)
+		w.WriteHeader(http.StatusInternalServerError)
+		fmt.Fprintf(w, "Error: %s", err)
 		return
 	}
 
